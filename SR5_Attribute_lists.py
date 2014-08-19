@@ -135,18 +135,17 @@ def attr_lim_max(attributes):
     # as the loop continues you have to delete the sums less than the new max.
     # the o(n) gets big terrible because of this
     # would probabably be a good idea to think of a data structure to make this faster
-    # problem with this loop. fix it tomorrow. something isn't calling back correctly after removals
-    # trace this on paper
+
     for priority in range(len(attributes)):
         for attri_set in range(len(attributes[priority])):
             if sum(attributes[priority][attri_set]) >= themax:
                 themax = sum(attributes[priority][attri_set])
                 attrlimmax[priority].append(attributes[priority][attri_set])
-                limit_printer(priority, attri_set)
+                #limit_printer(priority, attri_set)
                 for attribute in attrlimmax:
-                    for priority in attribute:
-                        if sum(priority) < themax:
-                            attrlimmax.remove(priority)
+                    for priorities in attribute:
+                        if sum(priorities) < themax:
+                            attrlimmax.remove(priorities)
 
                 
 
