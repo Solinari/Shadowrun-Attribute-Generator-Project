@@ -133,7 +133,7 @@ def attr_lim_max(attributes):
 
     # max just won't work for this because there is more than one sum that equals a max
     # as the loop continues you have to delete the sums less than the new max.
-    # the o(n) gets big terrible because of this
+    # the Big-O gets big terrible because of this: N^2 for append, and N^2 for the remove
     # would probabably be a good idea to think of a data structure to make this faster
 
     for priority in range(len(attributes)):
