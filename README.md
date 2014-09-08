@@ -28,3 +28,9 @@ Now there is bound to be many different kinds of maximums, and there are a lot o
 Writing the list comprehensions alone was a blast..now on to taking out the lesser choices. 
 
 More to come as I continue this project.
+
+UPDATE 09/07/2014
+---------------------
+So, I changed the implementation around. Now it creates a database file with my attributes and limits
+
+Next step: create a sample file to do some basic testing of queries to ensure it's as I want it for this project.
