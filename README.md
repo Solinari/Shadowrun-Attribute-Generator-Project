@@ -34,3 +34,5 @@ UPDATE 09/07/2014
 So, I changed the implementation around. Now it creates a database file with my attributes and limits
 
 Next step: create a sample file to do some basic testing of queries to ensure it's as I want it for this project.
+
+Also, consider changing structure of database if queries taking too long.
