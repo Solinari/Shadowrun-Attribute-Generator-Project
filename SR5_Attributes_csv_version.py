@@ -1,6 +1,10 @@
 import math
 import pandas as pd
 
+# This is the combinatoric definition of my data set by the rules of Shadowrun 5th Edition
+# the final if condition is a player may only have 1 attribute with 5 points in it at creation
+# so an attribute spread with two or more 5's is possible, but the rules do not allow for this.
+
 attr12 = [[i, j, k, l, m, n, o, p] for i in range(0, 6)
               for j in range(0, 6)
              for k in range(0, 6)
@@ -100,7 +104,7 @@ def Attribute_to_DataFrame(attributes):
     for priority in attributes:
         for attr_set in priority:
             
-            # pass the list to perform the calculations for the limits
+            # pass the list to the above function perform the calculations for the limits
             limits = limit_maker(attr_set)
 
             # then append that the attr_set, and the sum of the attributes to the value lists
@@ -132,6 +136,15 @@ def Attribute_to_DataFrame(attributes):
                                     'Social Limit' : Soc,
                                     'Attribute Sum' : Sum})
 
-    AttributeFrame.to_csv('Shadowrun_Attributes.csv')
-        
+    # The extra arguments are needed due to how pandas auto alphabatizes my columsn
+    # That made the data much less human readable in csv form
+    AttributeFrame.to_csv('Shadowrun_Attributes.csv',
+                          index=False,
+                          columns=['Body', 'Agility', 'Reaction', 'Strength',
+                                   'Willpower', 'Logic', 'Intuition', 'Charisma',
+                                   'Physical Limit', 'Mental Limit', 'Social Limit',
+                                   'Attribute Sum'],
+                          engine='python')
+
+# Call the final function and we're done! :D       
 Attribute_to_DataFrame(attr_list)
