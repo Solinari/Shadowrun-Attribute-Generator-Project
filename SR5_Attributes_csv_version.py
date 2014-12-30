@@ -1,5 +1,5 @@
 import math
-import sqlite3
+import pandas as pd
 
 attr12 = [[i, j, k, l, m, n, o, p] for i in range(0, 6)
               for j in range(0, 6)
@@ -70,6 +70,8 @@ def limit_maker(combination):
     '''pass an attribute set combination to find the limits and return the limits as a list'''
     global essence
 
+    # the python interpreter expects float conversion BEFORE division
+    # not declaring the float before taking the ceil led to all sorts of off by 1 errors before
     physical = math.ceil( float( (2 * (combination[3] + 1) ) + (combination[0] + 1) + (combination[1] + 1) ) / 3)
     mental =   math.ceil( float( (2 * (combination[5] + 1) ) + (combination[6] + 1) + (combination[4] + 1) ) / 3)
     social =   math.ceil( float( (2 * (combination[7] + 1) ) + (combination[4] + 1) +             essence  ) / 3)
@@ -77,36 +79,59 @@ def limit_maker(combination):
     return [physical, mental, social]
 
 #database append function
-def Attribute_DB(attributes):
-    '''make database to append above combinations'''
+def Attribute_to_DataFrame(attributes):
+    '''make DataFrame to append all data to, then write to a csv once'''
 
-    # make database, point cursor, create table 
-    con = sqlite3.connect('Attributes.db')
-
-    cur = con.cursor()
-
-    cur.execute("""CREATE TABLE AttributeData(Body integer, Agility integer, Reaction integer, Strength integer,
-                                              Willpower integer, Logic integer, Intuition integer, Charisma integer,
-                                              Physical_limit float, Mental_limit float, Social_limit float)""")
+    # Lists  of values to be inserted into the dataFrame once appended below
+    Bod = []
+    Agi = []
+    Rea = []
+    Str = []
+    Wil = []
+    Log = []
+    Int = []
+    Cha = []
+    Phy = []
+    Men = []
+    Soc = []
+    Sum = []
 
     # iterate through my gigantic list of list comprehnsion made lists and append it to the database
     for priority in attributes:
         for attr_set in priority:
             
-            # pass the list as a set with the calculation from the limit
+            # pass the list to perform the calculations for the limits
             limits = limit_maker(attr_set)
 
-            # then append that and the attr_set to a new set
-            attr_and_limits = (attr_set[0], attr_set[1] , attr_set[2], attr_set[3],
-                               attr_set[4], attr_set[5], attr_set[6], attr_set[7],
-                               limits[0], limits[1], limits[2])
+            # then append that the attr_set, and the sum of the attributes to the value lists
+            Bod.append(attr_set[0])
+            Agi.append(attr_set[1])
+            Rea.append(attr_set[2])
+            Str.append(attr_set[3])
+            Wil.append(attr_set[4])
+            Log.append(attr_set[5])
+            Int.append(attr_set[6])
+            Cha.append(attr_set[7])
+            Phy.append(limits[0])
+            Men.append(limits[1])
+            Soc.append(limits[2])
+            Sum.append(sum(attr_set))
 
-            # then that into the database! :D
-            cur.execute("INSERT INTO AttributeData VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", attr_and_limits)
-            
-    # Testing this on my system, the .db file is about 7.75 MB
+    # Construct Key : Value Pair of Headers to their list of scores
+    # I effectively pivoted the table for how the frame want it to be passed to write to a .csv
+    AttributeFrame = pd.DataFrame({ 'Body' : Bod,
+                                    'Agility' : Agi,
+                                    'Reaction' : Rea,
+                                    'Strength' : Str,
+                                    'Willpower' : Wil,
+                                    'Logic' : Log,
+                                    'Intuition' : Int,
+                                    'Charisma' : Cha,
+                                    'Physical Limit' : Phy,
+                                    'Mental Limit' : Men,
+                                    'Social Limit' : Soc,
+                                    'Attribute Sum' : Sum})
 
-    con.commit()
-    con.close()
-
-Attribute_DB(attr_list)
+    AttributeFrame.to_csv('Shadowrun_Attributes.csv')
+        
+Attribute_to_DataFrame(attr_list)
