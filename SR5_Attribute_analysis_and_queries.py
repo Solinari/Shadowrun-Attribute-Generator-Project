@@ -16,6 +16,8 @@ import matplotlib.pyplot as plt
 
 df = pd.read_csv('Shadowrun_Attributes.csv')
 
+# Box plots
+
 groupby = ['Physical Limit', 'Mental Limit', 'Social Limit', 'Attribute Sum']
 
 for i in range(len(groupby)):
