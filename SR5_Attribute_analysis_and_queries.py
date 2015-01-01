@@ -20,7 +20,9 @@ df = pd.read_csv('Shadowrun_Attributes.csv')
 
 df.boxplot(column=['Body', 'Agility','Reaction', 'Strength',
                    'Willpower', 'Logic','Intuition', 'Charisma'],
-                   by='Attribute Sum')
+           by='Attribute Sum',
+           notch=True,
+           showmeans=True)
 
 plt.show()
 
