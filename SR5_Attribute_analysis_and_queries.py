@@ -24,6 +24,26 @@ df.boxplot(column=['Body', 'Agility','Reaction', 'Strength',
            notch=True,
            showmeans=True)
 
+df.boxplot(column=['Body', 'Agility','Reaction', 'Strength',
+                   'Willpower', 'Logic','Intuition', 'Charisma'],
+           by='Physical Limit',
+           notch=True,
+           showmeans=True)
+
+df.boxplot(column=['Body', 'Agility','Reaction', 'Strength',
+                   'Willpower', 'Logic','Intuition', 'Charisma'],
+           by='Mental Limit',
+           notch=True,
+           showmeans=True)
+
+df.boxplot(column=['Body', 'Agility','Reaction', 'Strength',
+                   'Willpower', 'Logic','Intuition', 'Charisma'],
+           by='Social Limit',
+           notch=True,
+           showmeans=True)
+
+
+
 plt.show()
 
 
