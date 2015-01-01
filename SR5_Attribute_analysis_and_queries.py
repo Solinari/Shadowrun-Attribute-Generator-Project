@@ -16,33 +16,15 @@ import matplotlib.pyplot as plt
 
 df = pd.read_csv('Shadowrun_Attributes.csv')
 
+groupby = ['Physical Limit', 'Mental Limit', 'Social Limit', 'Attribute Sum']
 
+for i in range(len(groupby)):
 
-df.boxplot(column=['Body', 'Agility','Reaction', 'Strength',
+    df.boxplot(column=['Body', 'Agility','Reaction', 'Strength',
                    'Willpower', 'Logic','Intuition', 'Charisma'],
-           by='Attribute Sum',
-           notch=True,
-           showmeans=True)
-
-df.boxplot(column=['Body', 'Agility','Reaction', 'Strength',
-                   'Willpower', 'Logic','Intuition', 'Charisma'],
-           by='Physical Limit',
-           notch=True,
-           showmeans=True)
-
-df.boxplot(column=['Body', 'Agility','Reaction', 'Strength',
-                   'Willpower', 'Logic','Intuition', 'Charisma'],
-           by='Mental Limit',
-           notch=True,
-           showmeans=True)
-
-df.boxplot(column=['Body', 'Agility','Reaction', 'Strength',
-                   'Willpower', 'Logic','Intuition', 'Charisma'],
-           by='Social Limit',
-           notch=True,
-           showmeans=True)
-
-
+               by=groupby[i],
+               notch=True,
+               showmeans=True)
 
 plt.show()
 
