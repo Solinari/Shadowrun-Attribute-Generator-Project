@@ -76,7 +76,7 @@ def limit_maker(combination):
 
     # the python interpreter expects float conversion BEFORE division
     # not declaring the float before taking the ceil led to all sorts of off by 1 errors before
-    physical = math.ceil( float( (2 * (combination[3] + 1) ) + (combination[0] + 1) + (combination[1] + 1) ) / 3)
+    physical = math.ceil( float( (2 * (combination[3] + 1) ) + (combination[0] + 1) + (combination[2] + 1) ) / 3)
     mental =   math.ceil( float( (2 * (combination[5] + 1) ) + (combination[6] + 1) + (combination[4] + 1) ) / 3)
     social =   math.ceil( float( (2 * (combination[7] + 1) ) + (combination[4] + 1) +             essence  ) / 3)
 
