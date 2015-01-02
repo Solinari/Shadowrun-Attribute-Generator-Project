@@ -23,7 +23,7 @@ groupby = ['Physical Limit', 'Mental Limit', 'Social Limit', 'Attribute Sum']
 for i in range(len(groupby)):
 
     df.boxplot(column=['Body', 'Agility','Reaction', 'Strength',
-                   'Willpower', 'Logic','Intuition', 'Charisma'],
+                       'Willpower', 'Logic','Intuition', 'Charisma'],
                by=groupby[i],
                notch=True,
                showmeans=True)
