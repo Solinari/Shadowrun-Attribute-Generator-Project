@@ -100,14 +100,14 @@ def Attribute_to_DataFrame(attributes):
     Soc = []
     Sum = []
 
-    # iterate through my gigantic list of list comprehnsion made lists and append it to the database
+    # iterate through my gigantic list of list comprehnsion made lists and append it to lists for the data frame
     for priority in attributes:
         for attr_set in priority:
             
             # pass the list to the above function perform the calculations for the limits
             limits = limit_maker(attr_set)
 
-            # then append that the attr_set, and the sum of the attributes to the value lists
+            # then append that the attr_set, limits, and the sum of the attributes to the dataframe lists
             Bod.append(attr_set[0])
             Agi.append(attr_set[1])
             Rea.append(attr_set[2])
@@ -121,7 +121,7 @@ def Attribute_to_DataFrame(attributes):
             Soc.append(limits[2])
             Sum.append(sum(attr_set))
 
-    # Construct Key : Value Pair of Headers to their list of scores
+    # Construct Key : Value pairs to their list of scores
     # I effectively pivoted the table for how the frame want it to be passed to write to a .csv
     AttributeFrame = pd.DataFrame({ 'Body' : Bod,
                                     'Agility' : Agi,
@@ -136,8 +136,8 @@ def Attribute_to_DataFrame(attributes):
                                     'Social Limit' : Soc,
                                     'Attribute Sum' : Sum})
 
-    # The extra arguments are needed due to how pandas auto alphabatizes my columsn
-    # That made the data much less human readable in csv form
+    # The extra arguments are needed due to how pandas auto alphabatizes my columns
+    # Before that made the data much less human readable in csv form
     AttributeFrame.to_csv('Shadowrun_Attributes.csv',
                           index=False,
                           columns=['Body', 'Agility', 'Reaction', 'Strength',
