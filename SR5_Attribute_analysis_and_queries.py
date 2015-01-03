@@ -18,18 +18,20 @@ df = pd.read_csv('Shadowrun_Attributes.csv')
 
 # Box plots
 
-groupby = ['Physical Limit', 'Mental Limit', 'Social Limit', 'Attribute Sum']
+def Show_Boxplots(DataFrame):
+    ''' call this to show boxplots of my passed dataframe'''
+    groupby = ['Physical Limit', 'Mental Limit', 'Social Limit', 'Attribute Sum']
 
-for i in range(len(groupby)):
+    for i in range(len(groupby)):
 
-    df.boxplot(column=['Body', 'Agility','Reaction', 'Strength',
-                       'Willpower', 'Logic','Intuition', 'Charisma'],
-               by=groupby[i],
-               notch=True,
-               showmeans=True)
+        DataFrame.boxplot(column=['Body', 'Agility','Reaction', 'Strength',
+                                  'Willpower', 'Logic','Intuition', 'Charisma'],
+                          by=groupby[i],
+                          notch=True,
+                          showmeans=True)
 
-plt.show()
+    plt.show()
 
 
-
+Show_Boxplots(df)
 
