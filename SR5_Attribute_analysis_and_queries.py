@@ -33,5 +33,30 @@ def Show_Boxplots(DataFrame):
     plt.show()
 
 
-Show_Boxplots(df)
+#Show_Boxplots(df)
 
+# General plot
+
+def Show_Histogram(DataFrame):
+    '''Show a general plot when called'''
+
+##    kind of a nonsense graph here
+##    So remember to consider WHAT I want to plot..
+##    plt.figure(); DataFrame.plot()
+##
+##    plt.show()
+
+    
+    groupby = ['Physical Limit', 'Mental Limit', 'Social Limit', 'Attribute Sum']
+
+    for i in range(len(groupby)):
+        
+        plt.hist(DataFrame[groupby[i]])
+
+        plt.show()
+
+    
+                 
+    print("zoop")
+
+Show_Histogram(df)
