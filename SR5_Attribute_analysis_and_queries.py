@@ -38,25 +38,25 @@ def Show_Boxplots(DataFrame):
 # General plot
 
 def Show_Histogram(DataFrame):
-    '''Show a general plot when called'''
+    '''Show a histograms when called'''
 
-##    kind of a nonsense graph here
-##    So remember to consider WHAT I want to plot..
-##    plt.figure(); DataFrame.plot()
-##
-##    plt.show()
+    # we don't need sums for this one
+    DataFrame.pop('Attribute Sum')
 
+    # stacked type
+    plt.figure()
+    DataFrame.plot(kind='hist',stacked=True,
+                   bins=20)
+    # indpendant
+    DataFrame.hist(sharex=True,
+                   sharey=True,
+                   bins=50,)
     
-    groupby = ['Physical Limit', 'Mental Limit', 'Social Limit', 'Attribute Sum']
+    plt.show()
 
-    for i in range(len(groupby)):
-        
-        plt.hist(DataFrame[groupby[i]])
-
-        plt.show()
-
+    # again doing this just kinda shows the dataset sort of falls into a normal distribution
     
                  
-    print("zoop")
+
 
 Show_Histogram(df)
