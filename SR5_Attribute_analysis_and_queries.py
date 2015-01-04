@@ -47,7 +47,7 @@ def Show_Histogram(DataFrame):
     plt.figure()
     DataFrame.plot(kind='hist',stacked=True,
                    bins=20)
-    # indpendant
+    # indpendant type
     DataFrame.hist(sharex=True,
                    sharey=True,
                    bins=50,)
