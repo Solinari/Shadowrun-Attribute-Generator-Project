@@ -18,7 +18,7 @@ df = pd.read_csv('Shadowrun_Attributes.csv')
 
 # Box plots
 
-def Show_Boxplots(DataFrame):
+def Show_BoxPlot(DataFrame):
     ''' call this to show boxplots of my passed dataframe'''
     groupby = ['Physical Limit', 'Mental Limit', 'Social Limit', 'Attribute Sum']
 
@@ -33,9 +33,9 @@ def Show_Boxplots(DataFrame):
     plt.show()
 
 
-#Show_Boxplots(df)
+#Show_BoxPlot(df)
 
-# General plot
+# Histogram plot
 
 def Show_Histogram(DataFrame):
     '''Show a histograms when called'''
@@ -56,7 +56,20 @@ def Show_Histogram(DataFrame):
 
     # again doing this just kinda shows the dataset sort of falls into a normal distribution
     
-                 
+                
+#Show_Histogram(df)
 
 
-Show_Histogram(df)
+# Scatter Plot
+def Show_ScatterPlot(DataFrame):
+    '''Show an area plot when called'''
+
+    # we don't need sums for this one
+    DataFrame.pop('Attribute Sum')
+    
+    plt.figure()
+    DataFrame.plot(kind='area', stacked=False)
+
+    plt.show()
+
+Show_AreaPlot(df)
