@@ -36,3 +36,17 @@ So, I changed the implementation around. Now it creates a database file with my 
 Next step: create a sample file to do some basic testing of queries to ensure it's as I want it for this project.
 
 Also, consider changing structure of database if queries taking too long.
+
+UPDATE 01/04/2015
+---------------------
+I came back to this project and switched from using a db for this, to just a csv since it's a highly structured
+data set.
+
+Right now I am aiming to visualize the dataset with some rudimentary graphs, then a short bit of statistics on
+the data set.
+
+Finally a Output csv of the data set that answers the question I originally posited: "whats the best combination of attributes, for the highest combination of limits?"
+
+Although, I feel the visualization supports revising this question to: 
+
+"For any such combination of attributes, which have at least 1 maximum limit (which is 8)?"
